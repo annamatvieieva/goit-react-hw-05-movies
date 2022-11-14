@@ -18,7 +18,6 @@ const Home = () => {
       } catch (error) {
 				console.log(error);
       } finally {
-				console.log(response);
       }
     }
 		getMovie();
