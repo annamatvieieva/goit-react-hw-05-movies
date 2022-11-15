@@ -1,14 +1,10 @@
 import { Suspense, useState, useEffect } from "react";
 import { NavLink, Outlet, useParams, useLocation  } from "react-router-dom";
 import MovieCard from "components/MovieCard/MovieCard";
-import { getMovieById } from "services/api";
-
-
-
+import { getMovieById, getMovieCast, getMovieReviews} from "services/api";
 
 const MovieDetails = () => {
 	const [movie, setMovie] = useState();
-
 	const location = useLocation();
 	const backLink = location.state?.from ?? '/';
 	const {movieId} = useParams();
@@ -22,13 +18,12 @@ const MovieDetails = () => {
       } catch (error) {
 				console.log(error);
 			} finally {
-				console.log(response);
+				console.log('movie information', response);
       }
-    }
+		}
 		getMovie();
 	}, [movieId]);
 	
-	console.log(movie);
 	return (<div>
 		<NavLink to={backLink}>Go back</NavLink>
 		{movie && <MovieCard movieInformation={movie}/>}
