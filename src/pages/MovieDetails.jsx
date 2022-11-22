@@ -1,7 +1,7 @@
 import { Suspense, useState, useEffect } from "react";
 import { NavLink, Outlet, useParams, useLocation  } from "react-router-dom";
 import MovieCard from "components/MovieCard/MovieCard";
-import { getMovieById, getMovieCast, getMovieReviews} from "services/api";
+import { getMovieById} from "services/api";
 
 const MovieDetails = () => {
 	const [movie, setMovie] = useState();

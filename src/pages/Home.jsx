@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
-import { getTrendingMovie } from "services/api";
-import { TrendList } from "components/TrendList/TrendList";
+import { getTrendingMovies } from "services/api";
+import { MovieList } from "components/MoviesList/MoviesList";
 
 const Home = () => {
 	const [trending, setTrending] = useState([])
@@ -11,7 +11,7 @@ const Home = () => {
 		async function getMovie() {
 			let response
       try {
-        response = await getTrendingMovie();
+        response = await getTrendingMovies();
 				if (response.length !== 0) {
 					setTrending(response);
 				}
@@ -25,7 +25,7 @@ const Home = () => {
 
 
 	return (
-		<TrendList movieList = {trending} />
+		<MovieList movieList = {trending} />
 	)		
 	}
 export default Home;
