@@ -1,18 +1,25 @@
-import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import { MovieLink } from './MoviesList.styled';
 
 export const MovieList = ({ movieList }) => {
-	const location = useLocation();
+  const location = useLocation();
 
-	return (
-		<div>
-			{movieList.map(({ id, title }) => {
-				return (
-					<div key={id}>
-						<NavLink to={`/movies/${id}`}  state={{ from: location }}>{title}</NavLink>
-					</div>);
-			})}</div>
-	);
-}
+  return (
+    <ul>
+      {movieList.map(({ id, title }) => {
+        return (
+          <li key={id}>
+            <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </MovieLink>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
-
+MovieList.propTypes = {
+  movieList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

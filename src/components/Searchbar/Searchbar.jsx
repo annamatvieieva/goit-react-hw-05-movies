@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SearchForm } from './Searchbar.styled';
 
-
-export const Searchbar = ({  onSubmit }) => {
-
+export const Searchbar = ({ onSubmit }) => {
   const notify = () => {
     toast.error('You did not enter anything to search for...');
   };
@@ -20,23 +19,20 @@ export const Searchbar = ({  onSubmit }) => {
     }
   };
 
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <>
+      <SearchForm onSubmit={handleSubmit}>
         <input
           name="search"
           type="text"
           autoComplete="off"
           autoFocus
-          // value={value}
           placeholder="Search movies"
-          // onChange ={(e) => onChange(e.target.value)}
-				/>
-				<button type="submit">Search</button>
-      </form>
+        />
+        <button type="submit">Search</button>
+      </SearchForm>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

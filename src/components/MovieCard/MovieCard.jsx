@@ -1,30 +1,37 @@
-const MovieCard = ({ movieInformation }) => {
-	const { poster_path, title, vote_average, overview, genres
+import PropTypes from 'prop-types';
+import { Box } from 'components/Box';
+import { GenresList } from './MovieCard.styled';
 
- } = movieInformation;
-	const baseURL = 'https://image.tmdb.org/t/p/w400';
-	const path = baseURL + poster_path;
-	return (
-		<div>
-			<div>
-				<img src={path} alt="poster" />
-			</div>
-			<div>
-				<h1>{title}</h1>
-				<p>User Score: {vote_average} </p>
-				<h2>Overview</h2>
-				<p>{overview}</p>
-				<h2>Genres</h2>
-				<ul>
-				{genres.map(({ id, name }) => {
-					return (
-						<li key={id}>{name}</li>
-					)
-				})}
-					</ul>
-			</div>
-</div>
-	);
-}
+const MovieCard = ({ movieInformation }) => {
+  const { poster_path, title, vote_average, overview, genres } =
+    movieInformation;
+  const baseURL = 'https://image.tmdb.org/t/p/w300';
+  const path = baseURL + poster_path;
+  const score = Math.round(vote_average * 10) + '%';
+
+  return (
+    <Box p={2} display="flex">
+      <div>
+        <img src={path} alt="poster" />
+      </div>
+      <Box p={4}>
+        <h1>{title}</h1>
+        <p>User Score: {score} </p>
+        <h2>Overview</h2>
+        <p>{overview}</p>
+        <h3>Genres</h3>
+        <GenresList>
+          {genres.map(({ id, name }) => {
+            return <li key={id}>{name}</li>;
+          })}
+        </GenresList>
+      </Box>
+    </Box>
+  );
+};
+
+MovieCard.propTypes = {
+  movieInformation: PropTypes.object.isRequired,
+};
 
 export default MovieCard;

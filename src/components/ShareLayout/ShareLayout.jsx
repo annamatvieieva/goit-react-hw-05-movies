@@ -1,20 +1,21 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { Suspense } from "react";
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Header, NavigationElement, Navigation } from './ShareLayout.styled';
 
 const ShareLayout = () => {
-	return (
-		<div>
-		<header>
-				<nav>
-					<NavLink to='/'>Home</NavLink>
-					<NavLink to = 'movies'>Movies</NavLink>
-				</nav>
-			</header>
-			<Suspense>
-			<Outlet />
-		</Suspense>
-		</div>
-	);
-}
+  return (
+    <>
+      <Header>
+        <Navigation>
+          <NavigationElement to="/">Home</NavigationElement>
+          <NavigationElement to="movies">Movies</NavigationElement>
+        </Navigation>
+      </Header>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </>
+  );
+};
 
 export default ShareLayout;

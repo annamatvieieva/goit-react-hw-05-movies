@@ -1,31 +1,33 @@
-import { useEffect, useState} from "react";
-import { getTrendingMovies } from "services/api";
-import { MovieList } from "components/MoviesList/MoviesList";
+import { useEffect, useState } from 'react';
+import { getTrendingMovies } from 'services/api';
+import { MovieList } from 'components/MoviesList/MoviesList';
+import { Box } from 'components/Box';
 
 const Home = () => {
-	const [trending, setTrending] = useState([])
-  
-	
-	useEffect(() => {
-		
-		async function getMovie() {
-			let response
+  const [trending, setTrending] = useState([]);
+
+  useEffect(() => {
+    async function getMovie() {
+      let response;
       try {
         response = await getTrendingMovies();
-				if (response.length !== 0) {
-					setTrending(response);
-				}
+        if (response.length !== 0) {
+          setTrending(response);
+        }
       } catch (error) {
-				console.log(error);
+        console.log(error);
       } finally {
       }
     }
-		getMovie();
-  }, [ ]);
+    getMovie();
+  }, []);
 
+  return (
+    <Box as="main" px={3} py={4}>
+      <h1>Trending today</h1>
+      <MovieList movieList={trending} />
+    </Box>
+  );
+};
 
-	return (
-		<MovieList movieList = {trending} />
-	)		
-	}
 export default Home;
