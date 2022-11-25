@@ -11,6 +11,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const location = useLocation();
   const backLink = location.state?.from ?? '/';
+  const link = { from: location.state.from } ?? '/';
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const MovieDetails = () => {
         <ButtonIcon />
       </Buttonback>
       {movie && <MovieCard movieInformation={movie} />}
-      <MoreMovieInfo link={{ from: location.state.from }} />
+      <MoreMovieInfo link={link} />
       <Suspense>
         <Outlet />
       </Suspense>
